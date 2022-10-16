@@ -2,6 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+import { RiStarSFill } from "react-icons/ri";
+
 function Product() {
   const location = useLocation();
   const prodId = Number(location.pathname.split("/")[1]);
@@ -11,7 +16,7 @@ function Product() {
   );
 
   return (
-    <div className="home-layout">
+    <div className="prod-layout">
       <div className="prod-breadcrumb">
         <ul>
           <li>{storedProd?.category}</li>
@@ -26,9 +31,13 @@ function Product() {
         <div className="prod-grid">
           <div className="prod-lft">
             <div className="prod-lft-carousel">
-              {storedProd?.images.map((i, index) => (
-                <img src={i} alt="test img" key={index} />
-              ))}
+              <Carousel showThumbs={false}>
+                {storedProd?.images.map((i, index) => (
+                  <div key={index}>
+                    <img src={i} alt="test img" />
+                  </div>
+                ))}
+              </Carousel>
             </div>
           </div>
 
@@ -51,7 +60,10 @@ function Product() {
             </div>
             <div className="prod-rgt-field">
               <h5>RECENSIONI</h5>
-              <p>{storedProd?.rating}</p>
+              <p>
+                <RiStarSFill />
+                {storedProd?.rating}
+              </p>
             </div>
 
             <button>AGGIUNGI AL CARRELLO</button>

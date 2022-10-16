@@ -2,11 +2,19 @@ import React from "react";
 import { CgShoppingCart } from "react-icons/cg";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ mob }) {
   return (
     <nav>
       <div className="nav-logo">
-        <h3>FutureFashon</h3>
+        {mob ? (
+          <Link to="/">
+            <h3>FF</h3>
+          </Link>
+        ) : (
+          <Link to="/">
+            <h3>FutureFashon</h3>
+          </Link>
+        )}
       </div>
 
       <div className="nav-action">
